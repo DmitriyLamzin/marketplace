@@ -11,10 +11,12 @@ import java.util.List;
  * Created by Dmitriy_Lamzin on 5/12/2017.
  */
 @Entity
+@Table(name = "GROUPS")
 public class Groups implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue
+    @Column(name = "ID")
     private Integer id;
 
     @Basic(optional = false)
@@ -26,4 +28,27 @@ public class Groups implements Serializable {
     @XmlTransient
     private List<Person> personList;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Person> getPersonList() {
+        return personList;
+    }
+
+    public void setPersonList(List<Person> personList) {
+        this.personList = personList;
+    }
 }

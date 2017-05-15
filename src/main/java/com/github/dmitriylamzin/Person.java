@@ -14,7 +14,8 @@ import java.util.List;
 @Entity
 public class Person implements Serializable {
     @JoinTable(name = "PERSON_GROUPS", joinColumns = {
-            @JoinColumn(name = "EMAIL", referencedColumnName = "EMAIL")}, inverseJoinColumns = {
+            @JoinColumn(name = "EMAIL", referencedColumnName = "EMAIL" , columnDefinition="VARCHAR(45)")},
+            inverseJoinColumns = {
             @JoinColumn(name = "GROUPS_ID", referencedColumnName = "ID")})
     @ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER )
     private List<Groups> groupsList;
@@ -23,6 +24,7 @@ public class Person implements Serializable {
     @Pattern(regexp = ".+@.+\\.[a-z]+", message= "{person.email}")
     @Size(min=3, max=45, message= "{person.email}")
     @Basic(optional = false)
+    @Column(name = "EMAIL")
     @Id
     private String email;
 
