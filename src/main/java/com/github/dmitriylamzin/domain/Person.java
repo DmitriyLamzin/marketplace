@@ -1,4 +1,6 @@
-package com.github.dmitriylamzin;
+package com.github.dmitriylamzin.domain;
+
+import com.github.dmitriylamzin.Groups;
 
 import javax.persistence.*;
 import javax.validation.constraints.Pattern;
@@ -20,11 +22,15 @@ public class Person implements Serializable {
     @ManyToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER )
     private List<Groups> groupsList;
 
+    @JoinTable(name = "PERSON_ADVERTISEMENTS", joinColumns = {
+            @JoinColumn(name = "EMAIL", referencedColumnName = "EMAIL" , columnDefinition="VARCHAR(45)")},
+            inverseJoinColumns = {
+                    @JoinColumn(name = "AD_ID", referencedColumnName = "ID")})
+    @OneToMany
+    private List<SimpleAdvertisement> advertisements;
 
     @Pattern(regexp = ".+@.+\\.[a-z]+", message= "{person.email}")
     @Size(min=3, max=45, message= "{person.email}")
-    @Basic(optional = false)
-    @Column(name = "EMAIL")
     @Id
     private String email;
 

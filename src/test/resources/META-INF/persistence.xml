@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">
+
+    <persistence-unit name="testPU">
+        <jta-data-source>java:global/jdbc/testDS</jta-data-source>
+        <class>com.github.dmitriylamzin.Groups</class>
+        <class>com.github.dmitriylamzin.domain.Person</class>
+        <class>com.github.dmitriylamzin.domain.SimpleAdvertisement</class>
+        <properties>
+            <property name="javax.persistence.schema-generation.database.action" value="create"/>
+            <property name="javax.persistence.schema-generation.scripts.action" value="drop-and-create"/>
+            <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>
+
+            <property name="javax.persistence.jdbc.url" value="jdbc:derby:memory:marketplace;create=true"/>
+            <property name="javax.persistence.schema-generation.scripts.create-target" value="create_derby.sql"/>
+            <property name="javax.persistence.schema-generation.scripts.drop-target" value="drop.sql"/>
+            <property name="javax.persistence.sql-load-script-source" value="data.sql"/>
+
+        </properties>
+    </persistence-unit>
+</persistence>

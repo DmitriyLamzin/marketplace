@@ -1,6 +1,7 @@
 package com.github.dmitriylamzin;
 
 
+import com.github.dmitriylamzin.domain.Person;
 import org.junit.Test;
 
 import javax.persistence.EntityManager;
